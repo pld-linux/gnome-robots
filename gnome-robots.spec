@@ -1,12 +1,12 @@
-Summary:	GNOME Robots
-Summary(pl.UTF-8):	Robots dla GNOME
+Summary:	GNOME Robots game
+Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.12.2
+Version:	3.12.3
 Release:	1
-License:	GPL v2
+License:	GPL v2+
 Group:		X11/Applications/Games
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	61029bdaaa2162c492a9854b952d5a4f
+# Source0-md5:	184268f3826c915ff28b697a5d62116b
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
@@ -28,10 +28,12 @@ Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Avoid the robots and make them crash into each other.
+GNOME Robots is the classic robots game where you have to avoid the
+robots and make them crash into each other.
 
 %description -l pl.UTF-8
-Gra polegająca na zapobieganiu zderzeniom robotów.
+GNOME Robots to klasyczna gra z robotami, polegająca na unikaniu ich
+i powodowaniu, żeby zderzały się ze sobą wzajemnie.
 
 %prep
 %setup -q
