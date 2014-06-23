@@ -77,7 +77,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.gnome.robots.gschema.xml
 %{_datadir}/gnome-robots
 %{_desktopdir}/gnome-robots.desktop
-%{_iconsdir}/HighContrast/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.png
-%{_iconsdir}/hicolor/*/*/*.svg
+%{_iconsdir}/HighContrast/*/apps/gnome-robots.png
+%{_iconsdir}/hicolor/24x24/actions/teleport*.png
+%{_iconsdir}/hicolor/*/apps/gnome-robots.png
+%{_iconsdir}/hicolor/scalable/apps/gnome-robots.svg
 %{_mandir}/man6/gnome-robots.6*
