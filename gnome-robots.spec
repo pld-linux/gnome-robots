@@ -1,28 +1,29 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.12.3
+Version:	3.14.2
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.12/%{name}-%{version}.tar.xz
-# Source0-md5:	184268f3826c915ff28b697a5d62116b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.14/%{name}-%{version}.tar.xz
+# Source0-md5:	a9286c0bfbdcd931791fc6b8893b2489
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gnome-common
-BuildRequires:	gtk+3-devel >= 3.4.0
+BuildRequires:	glib2-devel >= 1:2.32.0
+BuildRequires:	gtk+3-devel >= 3.12.0
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
-BuildRequires:	librsvg-devel >= 2.32.0
+BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	pkgconfig
 BuildRequires:	yelp-tools
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	glib2 >= 1:2.26.0
-Requires:	gtk+3 >= 3.4.0
+Requires:	gtk+3 >= 3.12.0
 Requires:	hicolor-icon-theme
 Requires:	libcanberra-gtk3 >= 0.26
-Requires:	librsvg >= 2.32.0
+Requires:	librsvg >= 2.36.2
 Provides:	gnome-games-gnobots2 = 1:%{version}-%{release}
 Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
