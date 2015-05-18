@@ -1,26 +1,28 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.14.2
+Version:	3.16.1
 Release:	1
 License:	GPL v2+
 Group:		X11/Applications/Games
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.14/%{name}-%{version}.tar.xz
-# Source0-md5:	a9286c0bfbdcd931791fc6b8893b2489
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.16/%{name}-%{version}.tar.xz
+# Source0-md5:	554d94b67f6e27917da40604821851ed
 URL:		https://wiki.gnome.org/Apps/Robots
+BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	gnome-common
 BuildRequires:	glib2-devel >= 1:2.32.0
-BuildRequires:	gtk+3-devel >= 3.12.0
+BuildRequires:	gtk+3-devel >= 3.15.0
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	pkgconfig
 BuildRequires:	yelp-tools
 Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	glib2 >= 1:2.26.0
-Requires:	gtk+3 >= 3.12.0
+Requires(post,postun):	glib2 >= 1:2.32.0
+Requires:	glib2 >= 1:2.32.0
+Requires:	gtk+3 >= 3.15.0
 Requires:	hicolor-icon-theme
 Requires:	libcanberra-gtk3 >= 0.26
 Requires:	librsvg >= 2.36.2
@@ -62,12 +64,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 %glib_compile_schemas
-%update_icon_cache HighContrast
 %update_icon_cache hicolor
 
 %postun
 %glib_compile_schemas
-%update_icon_cache HighContrast
 %update_icon_cache hicolor
 
 %files -f %{name}.lang
@@ -78,8 +78,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.gnome.robots.gschema.xml
 %{_datadir}/gnome-robots
 %{_desktopdir}/gnome-robots.desktop
-%{_iconsdir}/HighContrast/*/apps/gnome-robots.png
 %{_iconsdir}/hicolor/24x24/actions/teleport*.png
-%{_iconsdir}/hicolor/*/apps/gnome-robots.png
+%{_iconsdir}/hicolor/*x*/apps/gnome-robots.png
 %{_iconsdir}/hicolor/scalable/apps/gnome-robots.svg
+%{_iconsdir}/hicolor/scalable/apps/gnome-robots-symbolic.svg
 %{_mandir}/man6/gnome-robots.6*
