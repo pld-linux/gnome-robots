@@ -1,22 +1,21 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.20.0.1
+Version:	3.20.2
 Release:	1
-License:	GPL v2+
+License:	GPL v3+
 Group:		X11/Applications/Games
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.20/%{name}-%{version}.tar.xz
-# Source0-md5:	1587fda719bdfc36c3f4bb06f22a0bf6
+# Source0-md5:	533b825799360d0e32b218273d7b3972
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	glib2-devel >= 1:2.32.0
-BuildRequires:	gnome-common
 BuildRequires:	gtk+3-devel >= 3.15.0
 BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
-BuildRequires:	libgames-support-devel
+BuildRequires:	libgames-support-devel >= 1.0
 BuildRequires:	librsvg-devel >= 2.36.2
 BuildRequires:	pkgconfig
 BuildRequires:	yelp-tools
@@ -26,6 +25,7 @@ Requires:	glib2 >= 1:2.32.0
 Requires:	gtk+3 >= 3.15.0
 Requires:	hicolor-icon-theme
 Requires:	libcanberra-gtk3 >= 0.26
+Requires:	libgames-support >= 1.0
 Requires:	librsvg >= 2.36.2
 Provides:	gnome-games-gnobots2 = 1:%{version}-%{release}
 Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
