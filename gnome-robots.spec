@@ -1,12 +1,12 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.22.0
+Version:	3.22.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Games
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	c7d981476822b00c46fb8125b24b9dc5
+# Source0-md5:	adc8b1ddfff21e344eb461db0785eb08
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib-devel
 BuildRequires:	autoconf >= 2.63
