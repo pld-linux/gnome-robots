@@ -1,27 +1,33 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	3.22.1
-Release:	2
+Version:	3.34.0
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Games
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.22/%{name}-%{version}.tar.xz
-# Source0-md5:	adc8b1ddfff21e344eb461db0785eb08
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/gnome-robots/3.34/%{name}-%{version}.tar.xz
+# Source0-md5:	6d2e91b053cbbdafc2043d225e722f3d
 URL:		https://wiki.gnome.org/Apps/Robots
-BuildRequires:	appstream-glib-devel
-BuildRequires:	autoconf >= 2.63
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	appstream-glib
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.32.0
+BuildRequires:	gsound-devel >= 1.0.2
 BuildRequires:	gtk+3-devel >= 3.15.0
-BuildRequires:	intltool >= 0.50.0
 BuildRequires:	libcanberra-gtk3-devel >= 0.26
 BuildRequires:	libgnome-games-support-devel >= 1.0
 BuildRequires:	librsvg-devel >= 2.36.2
+BuildRequires:	meson
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
+BuildRequires:	python3 >= 1:3
+BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	glib2 >= 1:2.32.0
 Requires:	glib2 >= 1:2.32.0
+Requires:	gsound >= 1.0.2
 Requires:	gtk+3 >= 3.15.0
 Requires:	hicolor-icon-theme
 Requires:	libcanberra-gtk3 >= 0.26
@@ -43,20 +49,14 @@ powodowaniu, żeby zderzały się ze sobą wzajemnie.
 %setup -q
 
 %build
-%{__intltoolize}
-%{__aclocal}
-%{__autoconf}
-%{__automake}
-%configure \
-	--disable-silent-rules
+%meson build
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{name} --with-gnome
 
@@ -75,12 +75,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc NEWS
 %attr(755,root,root) %{_bindir}/gnome-robots
-%{_datadir}/appdata/gnome-robots.appdata.xml
-%{_datadir}/glib-2.0/schemas/org.gnome.robots.gschema.xml
+%{_datadir}/glib-2.0/schemas/org.gnome.Robots.gschema.xml
 %{_datadir}/gnome-robots
-%{_desktopdir}/gnome-robots.desktop
+%{_datadir}/metainfo/org.gnome.Robots.appdata.xml
+%{_desktopdir}/org.gnome.Robots.desktop
 %{_iconsdir}/hicolor/24x24/actions/teleport*.png
-%{_iconsdir}/hicolor/*x*/apps/gnome-robots.png
-%{_iconsdir}/hicolor/scalable/apps/gnome-robots.svg
-%{_iconsdir}/hicolor/scalable/apps/gnome-robots-symbolic.svg
+%{_iconsdir}/hicolor/*x*/apps/org.gnome.Robots.png
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Robots.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Robots-symbolic.svg
 %{_mandir}/man6/gnome-robots.6*
