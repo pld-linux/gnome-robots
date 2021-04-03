@@ -23,6 +23,10 @@ BuildRequires:	python3 >= 1:3
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
+BuildRequires:	vala-gsound >= 1.0.2
+BuildRequires:	vala-libgee >= 0.8
+BuildRequires:	vala-libgnome-games-support >= 1.7.1
+BuildRequires:	vala-librsvg >= 2.36.2
 BuildRequires:	xz
 BuildRequires:	yelp-tools
 Requires(post,postun):	glib2 >= 1:2.32.0
