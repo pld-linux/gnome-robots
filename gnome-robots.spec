@@ -2,7 +2,7 @@ Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
 Version:	40.0
-Release:	1
+Release:	2
 License:	GPL v3+
 Group:		X11/Applications/Games
 Source0:	https://download.gnome.org/sources/gnome-robots/40/%{name}-%{version}.tar.xz
