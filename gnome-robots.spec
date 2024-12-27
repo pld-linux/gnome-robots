@@ -10,6 +10,7 @@ Source0:	https://download.gnome.org/sources/gnome-robots/41/%{name}-%{version}.t
 # Source0-md5:	150d940aa6f8d8267ed62144dbe5b899
 Source1:	%{name}-%{version}-vendor.tar.xz
 # Source1-md5:	9ca0e4a67c0646ba3c759438218327bd
+Patch0:		%{name}-x32.patch
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib
 BuildRequires:	cargo
@@ -51,6 +52,9 @@ powodowaniu, żeby zderzały się ze sobą wzajemnie.
 
 %prep
 %setup -q -b1
+%ifarch x32
+%patch -P0 -p1
+%endif
 
 # use offline registry
 CARGO_HOME="$(pwd)/.cargo"
@@ -65,6 +69,9 @@ directory = '$PWD/vendor'
 EOF
 
 %build
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson build
 
 %ninja_build -C build
@@ -72,6 +79,9 @@ EOF
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %ninja_install -C build
 
 %find_lang %{name} --with-gnome

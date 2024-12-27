@@ -1,0 +1,18 @@
+--- gnome-robots-41.1/src/meson.build.orig	2024-12-25 13:06:26.000000000 +0100
++++ gnome-robots-41.1/src/meson.build	2024-12-27 21:04:53.631954328 +0100
+@@ -11,6 +11,7 @@ run_command(
+ )
+ 
+ cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
++cargo_options += [ '--target', 'x86_64-unknown-linux-gnux32' ]
+ cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
+ 
+ if profile == 'debug'
+@@ -38,6 +39,6 @@ custom_target(
+         cargo_env,
+         cargo, 'build', cargo_options,
+         '&&',
+-        'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
++        'cp', 'src' / 'x86_64-unknown-linux-gnux32' / rust_target / meson.project_name(), '@OUTPUT@',
+     ]
+ )
