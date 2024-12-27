@@ -1,45 +1,44 @@
+# TODO: use gtk4-update-icon-cache
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	40.0
-Release:	2
+Version:	41.1
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Games
-Source0:	https://download.gnome.org/sources/gnome-robots/40/%{name}-%{version}.tar.xz
-# Source0-md5:	041b5df6329df23434edb267bafab3eb
+Source0:	https://download.gnome.org/sources/gnome-robots/41/%{name}-%{version}.tar.xz
+# Source0-md5:	150d940aa6f8d8267ed62144dbe5b899
+Source1:	%{name}-%{version}-vendor.tar.xz
+# Source1-md5:	9ca0e4a67c0646ba3c759438218327bd
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib
+BuildRequires:	cargo
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.32.0
-BuildRequires:	gsound-devel >= 1.0.2
-BuildRequires:	gtk+3-devel >= 3.24.0
-BuildRequires:	libgee-devel >= 0.8
-BuildRequires:	libgnome-games-support-devel >= 1.7.1
+BuildRequires:	glib2-devel >= 1:2.36
+BuildRequires:	gtk4-devel >= 4.10.0
+BuildRequires:	libadwaita-devel >= 1.2
 BuildRequires:	librsvg-devel >= 2.36.2
-BuildRequires:	meson
+BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3
 BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
-BuildRequires:	vala-gsound >= 1.0.2
-BuildRequires:	vala-libgee >= 0.8
-BuildRequires:	vala-libgnome-games-support >= 1.7.1
 BuildRequires:	vala-librsvg >= 2.36.2
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.32.0
+Requires(post,postun):	glib2 >= 1:2.36
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.32.0
-Requires:	gsound >= 1.0.2
-Requires:	gtk+3 >= 3.24.0
+Requires:	glib2 >= 1:2.36
+Requires:	gtk4 >= 4.10.0
 Requires:	hicolor-icon-theme
-Requires:	libgee >= 0.8
-Requires:	libgnome-games-support >= 1.7.1
+Requires:	libadwaita >= 1.2
 Requires:	librsvg >= 2.36.2
 Provides:	gnome-games-gnobots2 = 1:%{version}-%{release}
 Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
+ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -51,7 +50,19 @@ GNOME Robots to klasyczna gra z robotami, polegająca na unikaniu ich i
 powodowaniu, żeby zderzały się ze sobą wzajemnie.
 
 %prep
-%setup -q
+%setup -q -b1
+
+# use offline registry
+CARGO_HOME="$(pwd)/.cargo"
+
+mkdir -p "$CARGO_HOME"
+cat >$CARGO_HOME/config <<EOF
+[source.crates-io]
+replace-with = 'vendored-sources'
+
+[source.vendored-sources]
+directory = '$PWD/vendor'
+EOF
 
 %build
 %meson build
@@ -78,12 +89,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc NEWS
+%doc NEWS README.md
 %attr(755,root,root) %{_bindir}/gnome-robots
 %{_datadir}/dbus-1/services/org.gnome.Robots.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Robots.gschema.xml
 %{_datadir}/gnome-robots
-%{_datadir}/metainfo/org.gnome.Robots.appdata.xml
+%{_datadir}/metainfo/org.gnome.Robots.metainfo.xml
 %{_desktopdir}/org.gnome.Robots.desktop
 %{_iconsdir}/hicolor/24x24/actions/teleport*.png
 %{_iconsdir}/hicolor/scalable/apps/org.gnome.Robots.svg
