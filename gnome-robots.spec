@@ -2,15 +2,17 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	41.1
+Version:	41.2
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Games
 Source0:	https://download.gnome.org/sources/gnome-robots/41/%{name}-%{version}.tar.xz
-# Source0-md5:	150d940aa6f8d8267ed62144dbe5b899
+# Source0-md5:	8ec5ea7ebbf13d5d979a45374c3146f1
+# cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
 Source1:	%{name}-%{version}-vendor.tar.xz
-# Source1-md5:	9ca0e4a67c0646ba3c759438218327bd
+# Source1-md5:	a8363d25faeba46f227d474ef6154234
 Patch0:		%{name}-x32.patch
+Patch1:		%{name}-no-scripts.patch
 URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib
 BuildRequires:	cargo
@@ -23,7 +25,7 @@ BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
@@ -55,12 +57,13 @@ powodowaniu, żeby zderzały się ze sobą wzajemnie.
 %ifarch x32
 %patch -P0 -p1
 %endif
+%patch -P1 -p1
 
 # use offline registry
 CARGO_HOME="$(pwd)/.cargo"
 
 mkdir -p "$CARGO_HOME"
-cat >$CARGO_HOME/config <<EOF
+cat >$CARGO_HOME/config.toml <<EOF
 [source.crates-io]
 replace-with = 'vendored-sources'
 
@@ -72,9 +75,9 @@ EOF
 %ifarch x32
 export PKG_CONFIG_ALLOW_CROSS=1
 %endif
-%meson build
+%meson
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -82,7 +85,7 @@ rm -rf $RPM_BUILD_ROOT
 %ifarch x32
 export PKG_CONFIG_ALLOW_CROSS=1
 %endif
-%ninja_install -C build
+%meson_install
 
 %find_lang %{name} --with-gnome
 
