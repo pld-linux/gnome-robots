@@ -17,10 +17,10 @@ URL:		https://wiki.gnome.org/Apps/Robots
 BuildRequires:	appstream-glib
 BuildRequires:	cargo
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.36
-BuildRequires:	gtk4-devel >= 4.10.0
-BuildRequires:	libadwaita-devel >= 1.2
-BuildRequires:	librsvg-devel >= 2.36.2
+BuildRequires:	glib2-devel >= 1:2.82
+BuildRequires:	gtk4-devel >= 4.16.1
+BuildRequires:	libadwaita-devel >= 1.6
+BuildRequires:	librsvg-devel >= 2.59.2
 BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
@@ -29,16 +29,16 @@ BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	vala
-BuildRequires:	vala-librsvg >= 2.36.2
+BuildRequires:	vala-librsvg >= 2.59.2
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.36
+Requires(post,postun):	glib2 >= 1:2.82
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.36
-Requires:	gtk4 >= 4.10.0
+Requires:	glib2 >= 1:2.82
+Requires:	gtk4 >= 4.16.1
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.2
-Requires:	librsvg >= 2.36.2
+Requires:	libadwaita >= 1.6
+Requires:	librsvg >= 2.59.2
 Provides:	gnome-games-gnobots2 = 1:%{version}-%{release}
 Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
 ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
