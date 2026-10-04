@@ -2,43 +2,42 @@
 Summary:	GNOME Robots game
 Summary(pl.UTF-8):	Gra Robots dla GNOME
 Name:		gnome-robots
-Version:	41.2
-Release:	2
+Version:	50.0
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Games
-Source0:	https://download.gnome.org/sources/gnome-robots/41/%{name}-%{version}.tar.xz
-# Source0-md5:	8ec5ea7ebbf13d5d979a45374c3146f1
+Source0:	https://download.gnome.org/sources/gnome-robots/50/%{name}-%{version}.tar.xz
+# Source0-md5:	e52ae50ac6585690fb36210b99f094cb
 # cargo vendor-filterer --platform='*-unknown-linux-*' --tier=2
 Source1:	%{name}-%{version}-vendor.tar.xz
-# Source1-md5:	a8363d25faeba46f227d474ef6154234
+# Source1-md5:	f3c78ba7ef064d82b54006b86814fc73
 Patch0:		%{name}-x32.patch
 Patch1:		%{name}-no-scripts.patch
 URL:		https://wiki.gnome.org/Apps/Robots
-BuildRequires:	appstream-glib
+# appstreamcli
+BuildRequires:	AppStream
 BuildRequires:	cargo
 BuildRequires:	gettext-tools
-BuildRequires:	glib2-devel >= 1:2.82
-BuildRequires:	gtk4-devel >= 4.16.1
-BuildRequires:	libadwaita-devel >= 1.6
-BuildRequires:	librsvg-devel >= 2.59.2
+BuildRequires:	glib2-devel >= 1:2.86
+BuildRequires:	glycin-devel >= 2.0
+BuildRequires:	glycin-gtk4-devel >= 2.0
+BuildRequires:	gtk4-devel >= 4.20.0
+BuildRequires:	libadwaita-devel >= 1.8
 BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
 BuildRequires:	python3 >= 1:3
 BuildRequires:	rpmbuild(macros) >= 2.042
-BuildRequires:	rust
+BuildRequires:	rust >= 1.92
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	vala
-BuildRequires:	vala-librsvg >= 2.59.2
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires(post,postun):	glib2 >= 1:2.82
+Requires(post,postun):	glib2 >= 1:2.86
 Requires(post,postun):	gtk-update-icon-cache
-Requires:	glib2 >= 1:2.82
-Requires:	gtk4 >= 4.16.1
+Requires:	glib2 >= 1:2.86
+Requires:	gtk4 >= 4.20.0
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.6
-Requires:	librsvg >= 2.59.2
+Requires:	libadwaita >= 1.8
 Provides:	gnome-games-gnobots2 = 1:%{version}-%{release}
 Obsoletes:	gnome-games-gnobots2 < 1:3.8.0
 ExclusiveArch:	%{x8664} %{ix86} x32 aarch64 armv6hl armv7hl armv7hnl
@@ -53,7 +52,7 @@ GNOME Robots to klasyczna gra z robotami, polegająca na unikaniu ich i
 powodowaniu, żeby zderzały się ze sobą wzajemnie.
 
 %prep
-%setup -q -b1
+%setup -q -a1
 %ifarch x32
 %patch -P0 -p1
 %endif
